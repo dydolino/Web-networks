@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="389.0" prefWidth="556.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane fx:id="field" prefHeight="328.0" prefWidth="542.0">
+         <children>
+            <Button fx:id="logInBtn" layoutX="245.0" layoutY="212.0" mnemonicParsing="false" onAction="#logInPress" text="Log in" />
+            <PasswordField fx:id="passBox" layoutX="197.0" layoutY="164.0" promptText="Password" />
+            <TextField fx:id="emailBox" layoutX="197.0" layoutY="129.0" promptText="E-mail" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>

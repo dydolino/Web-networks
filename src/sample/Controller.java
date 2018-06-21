@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import org.json.JSONObject;
 
 
 public class Controller {
@@ -19,13 +20,15 @@ public class Controller {
     @FXML
     private AnchorPane field;
 
+    Http http;
+
     public void logInPress(ActionEvent event) throws Exception {
 
         String mail = emailBox.getText();
         String pass = passBox.getText();
 
-        Http http = new Http();
-        StringBuilder response;
+        http = new Http();
+        JSONObject response;
 
         response = http.connection(mail, pass);
 

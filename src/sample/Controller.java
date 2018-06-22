@@ -25,43 +25,31 @@ public class Controller {
     @FXML
     private Label label;
 
-    Http http;
 
-    public void logInPress(ActionEvent event) {
+    public void logInPress(ActionEvent event) throws Exception {
 
         String mail = emailBox.getText();
         String pass = passBox.getText();
 
-        http = new Http();
         JSONObject response = null;
 
         try {
-            response = http.connection(mail, pass);
-        } catch (Exception e) {
-            e.printStackTrace();
+            response = Http.connection(mail, pass);
+        } catch (IOException e) {
+            System.out.println("Nieprawidłowe hasło lub login");
         }
 
         if (response != null) {
-            System.out.println("Udalo ci sie zalogowac");
-            System.out.println(response.toString());
-
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/Resources/List.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            loader.setLocation(getClass().getResource("/Resources/Lista.fxml"));
 
-            List list = loader.getController();
-            list.setJsonObj(response);
-
+            loader.load();
+            Lista lista = loader.getController();
+            lista.setJsonObj(response);
             Parent p = loader.getRoot();
-
             field.getChildren().setAll(p);
 
         } else {
-            System.out.println("Nie udalo Ci sie zalogowac");
             label.setText("Nieprawidłowy login lub hasło! ");
         }
     }

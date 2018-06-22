@@ -7,21 +7,17 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Http {
 
 
-    private JSONObject access;
-    private HttpURLConnection connection;
-
-    public Http() {
-
-    }
-
-    public JSONObject connection(String mail, String pass) throws Exception {
+    public static JSONObject connection(String mail, String pass) throws Exception {
 
         URL url = new URL("http://smieszne-koty.herokuapp.com/oauth/token" +
                 "?grant_type=password&email=" + mail + "&password=" + pass);
+        HttpURLConnection connection;
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setReadTimeout(30000);
@@ -38,16 +34,16 @@ public class Http {
         input.close();
 
         JSONObject autoryzacja = new JSONObject(response.toString());
-        this.access = autoryzacja;
+
 
         return autoryzacja;
     }
 
-    public JSONArray getObjects() throws Exception {
-        String token = access.getString("access_token");
+    public JSONArray getObjects(JSONObject jsonObject) throws Exception {
+        String token = jsonObject.getString("access_token");
         URL url = new URL("http://smieszne-koty.herokuapp.com/api/kittens" +
                 "?access_token=" + token);
-
+        HttpURLConnection connection;
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setReadTimeout(30000);
@@ -65,6 +61,45 @@ public class Http {
         JSONArray kotki = new JSONArray(response.toString());
 
         return kotki;
+
+    }
+
+    public static List<Cat> getCats(JSONObject jsonObject) throws Exception {
+        String token = jsonObject.getString("access_token");
+        URL url = new URL("http://smieszne-koty.herokuapp.com/api/kittens" +
+                "?access_token=" + token);
+        HttpURLConnection connection;
+
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setReadTimeout(30000);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+
+        while ((inputLine = input.readLine()) != null)
+            response.append(inputLine);
+        input.close();
+        System.out.println(response);
+
+
+        JSONArray kotki = new JSONArray(response.toString());
+        List<Cat> cats = new ArrayList<>();
+
+        for (int i = 0; i < kotki.length(); i++) {
+
+            JSONObject kotek = kotki.getJSONObject(i);
+            Cat cat = new Cat();
+            cat.setName(kotek.getString("name"));
+            cat.setURL(kotek.getString("url"));
+            cat.setVotes(kotek.getString("vote_count"));
+            cats.add(cat);
+
+        }
+
+        return cats;
 
     }
 

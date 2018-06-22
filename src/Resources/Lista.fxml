@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Lista">
+   <children>
+      <TableView fx:id="catsTable" prefHeight="401.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="126.0" text="Name" />
+          <TableColumn fx:id="colVote" prefWidth="86.0" text="Vote count" />
+            <TableColumn fx:id="colUrl" prefWidth="246.0" text="URL" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

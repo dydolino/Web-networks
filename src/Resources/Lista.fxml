@@ -8,8 +8,11 @@
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Lista">
    <children>
       <ImageView fx:id="photo" fitHeight="294.0" fitWidth="200.0" layoutX="32.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="name" layoutX="300.0" layoutY="98.0" prefHeight="29.0" prefWidth="101.0" text="Label" />
-      <Label fx:id="votes" layoutX="262.0" layoutY="174.0" prefHeight="17.0" prefWidth="112.0" text="Label" />
-      <Button fx:id="nextBtn" layoutX="274.0" layoutY="290.0" mnemonicParsing="false" onAction="#nextCat" text="Next cat" />
+      <Label fx:id="name" layoutX="384.0" layoutY="94.0" prefHeight="29.0" prefWidth="173.0" text="Label" />
+      <Label fx:id="votes" layoutX="384.0" layoutY="174.0" prefHeight="29.0" prefWidth="173.0" text="Label" />
+      <Button fx:id="nextBtn" layoutX="278.0" layoutY="338.0" mnemonicParsing="false" onAction="#nextCat" prefHeight="29.0" prefWidth="71.0" text="Next cat" />
+      <Button fx:id="pageBtn" layoutX="384.0" layoutY="338.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="29.0" prefWidth="71.0" text="Next page" />
+      <Label layoutX="290.0" layoutY="100.0" text="Name:" />
+      <Label layoutX="293.0" layoutY="180.0" text="Votes" />
    </children>
 </AnchorPane>

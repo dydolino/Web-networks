@@ -39,11 +39,12 @@ public class Http {
         return autoryzacja;
     }
 
-    public JSONArray getObjects(JSONObject jsonObject) throws Exception {
+    public static List<Cat> getCats(JSONObject jsonObject, int pageNumber) throws Exception {
         String token = jsonObject.getString("access_token");
         URL url = new URL("http://smieszne-koty.herokuapp.com/api/kittens" +
-                "?access_token=" + token);
+                "?access_token=" + token+"&page="+pageNumber);
         HttpURLConnection connection;
+
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setReadTimeout(30000);
@@ -58,9 +59,22 @@ public class Http {
         input.close();
         System.out.println(response);
 
-        JSONArray kotki = new JSONArray(response.toString());
 
-        return kotki;
+        JSONArray kotki = new JSONArray(response.toString());
+        List<Cat> cats = new ArrayList<>();
+
+        for (int i = 0; i < kotki.length(); i++) {
+
+            JSONObject kotek = kotki.getJSONObject(i);
+            Cat cat = new Cat();
+            cat.setName(kotek.getString("name"));
+            cat.setURL(kotek.getString("url"));
+            cat.setVotes(kotek.getInt("vote_count"));
+            cats.add(cat);
+
+        }
+
+        return cats;
 
     }
 

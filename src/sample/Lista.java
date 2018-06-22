@@ -28,6 +28,10 @@ public class Lista {
     private Button nextBtn;
     @FXML
     private Button pageBtn;
+    @FXML
+    private Button previousCat;
+    @FXML
+    private Button previousPage;
 
 
     private JSONObject JsonObj;
@@ -37,6 +41,8 @@ public class Lista {
 
 
     public void setJsonObj(JSONObject obj) throws Exception {
+        previousCat.setDisable(true);
+        previousPage.setDisable(true);
 
         this.JsonObj = obj;
         cats = getCats(JsonObj, pageNumber);
@@ -50,6 +56,7 @@ public class Lista {
 
 
     public void nextCat(ActionEvent event) {
+        previousCat.setDisable(false);
         counter++;
         try {
             name.setText(cats.get(counter).getName());
@@ -66,6 +73,7 @@ public class Lista {
     }
 
     public void nextPage(ActionEvent event) {
+        previousPage.setDisable(false);
         pageNumber++;
         counter = 0;
         try {
@@ -75,11 +83,50 @@ public class Lista {
             Image image = new Image(cats.get(counter).getURL());
             photo.setImage(image);
             nextBtn.setDisable(false);
+            previousCat.setDisable(true);
         } catch (Exception e) {
             pageBtn.setDisable(true);
             nextBtn.setDisable(false);
+            previousCat.setDisable(true);
         }
 
+
+    }
+
+    public void preCat(ActionEvent event) {
+        counter--;
+        try {
+            name.setText(cats.get(counter).getName());
+            votes.setText(String.valueOf(cats.get(counter).getVotes()));
+            Image image = new Image(cats.get(counter).getURL());
+            photo.setImage(image);
+            nextBtn.setDisable(false);
+            if (counter == 0) {
+                previousCat.setDisable(true);
+            }
+        } catch (Exception e) {
+            previousCat.setDisable(true);
+
+        }
+    }
+
+    public void prePage(ActionEvent event) {
+        pageNumber--;
+        counter = 0;
+        try {
+            cats = getCats(JsonObj, pageNumber);
+            name.setText(cats.get(counter).getName());
+            votes.setText(String.valueOf(cats.get(counter).getVotes()));
+            Image image = new Image(cats.get(counter).getURL());
+            photo.setImage(image);
+            pageBtn.setDisable(false);
+            previousCat.setDisable(true);
+
+            if (pageNumber == 1) {
+                previousPage.setDisable(true);
+            }
+        } catch (Exception e) {
+        }
 
     }
 }

@@ -42,7 +42,7 @@ public class Http {
     public static List<Cat> getCats(JSONObject jsonObject, int pageNumber) throws Exception {
         String token = jsonObject.getString("access_token");
         URL url = new URL("http://smieszne-koty.herokuapp.com/api/kittens" +
-                "?access_token=" + token+"&page="+pageNumber);
+                "?access_token=" + token + "&page=" + pageNumber);
         HttpURLConnection connection;
 
         connection = (HttpURLConnection) url.openConnection();
@@ -57,47 +57,6 @@ public class Http {
         while ((inputLine = input.readLine()) != null)
             response.append(inputLine);
         input.close();
-        System.out.println(response);
-
-
-        JSONArray kotki = new JSONArray(response.toString());
-        List<Cat> cats = new ArrayList<>();
-
-        for (int i = 0; i < kotki.length(); i++) {
-
-            JSONObject kotek = kotki.getJSONObject(i);
-            Cat cat = new Cat();
-            cat.setName(kotek.getString("name"));
-            cat.setURL(kotek.getString("url"));
-            cat.setVotes(kotek.getInt("vote_count"));
-            cats.add(cat);
-
-        }
-
-        return cats;
-
-    }
-
-    public static List<Cat> getCats(JSONObject jsonObject) throws Exception {
-        String token = jsonObject.getString("access_token");
-        URL url = new URL("http://smieszne-koty.herokuapp.com/api/kittens" +
-                "?access_token=" + token);
-        HttpURLConnection connection;
-
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setReadTimeout(30000);
-
-        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        StringBuilder response = new StringBuilder();
-        String inputLine;
-
-        while ((inputLine = input.readLine()) != null)
-            response.append(inputLine);
-        input.close();
-        System.out.println(response);
-
 
         JSONArray kotki = new JSONArray(response.toString());
         List<Cat> cats = new ArrayList<>();

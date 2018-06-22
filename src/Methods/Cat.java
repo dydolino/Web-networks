@@ -5,14 +5,14 @@ public class Cat {
     private String URL;
     private int votes;
 
-    public Cat(){
+    public Cat() {
 
     }
 
-    public Cat(String name,String URL, int votes){
-        this.name=name;
-        this.URL=URL;
-        this.votes=votes;
+    public Cat(String name, String URL, int votes) {
+        this.name = name;
+        this.URL = URL;
+        this.votes = votes;
     }
 
     public String getName() {

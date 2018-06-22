@@ -94,7 +94,7 @@ public class Http {
             Cat cat = new Cat();
             cat.setName(kotek.getString("name"));
             cat.setURL(kotek.getString("url"));
-            cat.setVotes(kotek.getString("vote_count"));
+            cat.setVotes(kotek.getInt("vote_count"));
             cats.add(cat);
 
         }

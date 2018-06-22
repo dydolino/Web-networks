@@ -3,13 +3,13 @@ package Methods;
 public class Cat {
     private String name;
     private String URL;
-    private String votes;
+    private int votes;
 
     public Cat(){
 
     }
 
-    public Cat(String name,String URL, String votes){
+    public Cat(String name,String URL, int votes){
         this.name=name;
         this.URL=URL;
         this.votes=votes;
@@ -31,11 +31,11 @@ public class Cat {
         this.URL = URL;
     }
 
-    public String getVotes() {
+    public int getVotes() {
         return votes;
     }
 
-    public void setVotes(String votes) {
+    public void setVotes(int votes) {
         this.votes = votes;
     }
 }

@@ -11,8 +11,8 @@ import java.net.URL;
 public class Http {
 
 
-    JSONObject access;
-    HttpURLConnection connection;
+    private JSONObject access;
+    private HttpURLConnection connection;
 
     public Http() {
 

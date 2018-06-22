@@ -16,18 +16,17 @@ public class List {
     @FXML
     private TextField textField;
 
-    Controller controller = new Controller();
-    Http http = controller.http;
+    private JSONObject JsonObj;
 
+
+    public void setJsonObj(JSONObject obj){
+
+        this.JsonObj=obj;
+    }
 
     public void showJSON(ActionEvent event) throws Exception {
 
-        JSONArray kotki =http.getObjects();
-
-        for (int i=0;i<kotki.length();i++){
-            JSONObject kotek=kotki.getJSONObject(i);
-            System.out.println(kotek.getString("name"));
-        }
+        System.out.println("Token= "+JsonObj.getString("access_token"));
 
     }
 }
